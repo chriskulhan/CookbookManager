@@ -114,13 +114,18 @@ def main():
              'Juniper Vinegar-Smith', 2023, 5, True, 'Beige')
         ]
         
+        #display our list of cookbooks:
         print("\nCurating your cookbook collection...")
+        #first insert cookbooks into the database
+        # loop through list of cookbooks
         for cookbook in cookbooks:
             insert_cookbook(conn, cookbook)
         
+        #get the cookbooks from your database:
         print("\nYour carefully curated collection:")
         get_all_cookbooks(conn)
         
+        #close the database connection
         conn.close()
         print("\nDatabase connection closed")
     else:
