@@ -23,16 +23,19 @@ def create_table(conn):
     try: 
         sql_create_cookbooks_table = """
         CREATE TABLE IF NOT EXISTS cookbooks (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        author TEX NOT NULL,
-        year_published INTEGER,
-        aesthetic_rating INTEGER,
-        instagram_worthy BOOLEAN,
-        cover_color TEXT
-    );"""
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            author TEXT NOT NULL,
+            year_published INTEGER,
+            aesthetic_rating INTEGER,
+            instagram_worthy BOOLEAN,
+            cover_color TEXT
+        );"""
+        #To execute the above code: 
+        #calling the constructor for the cursor object to create a new cursor
+        #(let's us work with the database)
         cursor = conn.cursor()
         cursor.execute(sql_create_cookbooks_table)
-        print("Sucessfully createdd a database structure")
+        print("Sucessfully created a database structure")
     except Error as e:
         print(f"Error creating a table: {e}")
