@@ -88,7 +88,45 @@ def get_all_cookbooks(conn):
         print(f"Error retrieving collection: {e}")
         #returns an empty list:
         return []   
-    
+
+#TODO this is where to add new features:    
+#part 2 new features to implement (do at least 2 features)
+#option a, recipe tagging system:
+def add_recipe_tags(conn, cookbook_id, tags):
+    """Add tags to a cookbook (e.g., 'gluten-free', 'plant-based', 'artisanal')"""
+    # Create a new tags table with many-to-many relationship
+    # Implement tag addition functionality
+    # Return success/failure status
+
+#part 2, option b, cookbook borrowing tracker:
+def track_borrowed_cookbook(conn, cookbook_id, friend_name, date_borrowed):
+    """Track which friend borrowed your cookbook and when"""
+    # Create a borrowing history table
+    # Add borrowing record
+    # Include return date tracking
+
+#part 2, option c, Aesthetic Photoshoot Planning
+def create_photoshoot_plan(conn, cookbook_id):
+    """Generate Instagram-worthy photo layout suggestions based on cover_color and aesthetic_rating"""
+    # Suggest photo angles
+    # Recommend props based on cookbook theme
+    # Generate hashtag suggestions
+
+#part 2, option d, Seasonal Collection Rotation
+def rotate_seasonal_collection(conn, season):
+    """Update display recommendations based on season"""
+    # Categorize books by season
+    # Suggest seasonal arrangements
+    # Update instagram_worthy status based on current season
+
+#part 2, option e, Cookbook Analytics   
+def generate_collection_analytics(conn):
+    """Generate insights about your cookbook collection"""
+    # Calculate average aesthetic rating
+    # Track aesthetic trends by year
+    # Identify gaps in your collection 
+
+
 #main function is called with the program executes: (director)    
 def main():
     #Establish connection to our cookbook database
@@ -136,42 +174,6 @@ def main():
         print("\nDatabase connection closed")
     else:
         print("Error! The universe is not aligned for database connections right now.")
-
-#part 2 new features to implement (do at least 2 features)
-#option a, recipe tagging system:
-def add_recipe_tags(conn, cookbook_id, tags):
-    """Add tags to a cookbook (e.g., 'gluten-free', 'plant-based', 'artisanal')"""
-    # Create a new tags table with many-to-many relationship
-    # Implement tag addition functionality
-    # Return success/failure status
-
-#part 2, option b, cookbook borrowing tracker:
-def track_borrowed_cookbook(conn, cookbook_id, friend_name, date_borrowed):
-    """Track which friend borrowed your cookbook and when"""
-    # Create a borrowing history table
-    # Add borrowing record
-    # Include return date tracking
-
-#part 2, option c, Aesthetic Photoshoot Planning
-def create_photoshoot_plan(conn, cookbook_id):
-    """Generate Instagram-worthy photo layout suggestions based on cover_color and aesthetic_rating"""
-    # Suggest photo angles
-    # Recommend props based on cookbook theme
-    # Generate hashtag suggestions
-
-#part 2, option d, Seasonal Collection Rotation
-def rotate_seasonal_collection(conn, season):
-    """Update display recommendations based on season"""
-    # Categorize books by season
-    # Suggest seasonal arrangements
-    # Update instagram_worthy status based on current season
-
-#part 2, option e, Cookbook Analytics   
-def generate_collection_analytics(conn):
-    """Generate insights about your cookbook collection"""
-    # Calculate average aesthetic rating
-    # Track aesthetic trends by year
-    # Identify gaps in your collection 
 
 if __name__ == '__main__':
     main()
