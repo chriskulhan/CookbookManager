@@ -15,7 +15,7 @@ def create_connection():
         print(f"Error establishing connection with the void: {e}")
         return None
     
-#Function to create a table for storing cookbooks
+#Function to create tables for storing cookbooks and borrowing history
 def create_table(conn):
     """Create table structure"""
     try: 
@@ -29,16 +29,33 @@ def create_table(conn):
             instagram_worthy BOOLEAN,
             cover_color TEXT
         );"""
+        
+        """Create a borrowing history table"""
+        sql_create_lending_cookbooks_table = """
+        CREATE TABLE IF NOT EXISTS lending_cookbooks_list (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            cookbook_id INTEGER NOT NULL, 
+            borrower_name TEXT NOT NULL,
+            date_borrowed DATE NOT NULL,
+            returned BOOLEAN DEFAULT 0,
+            date_returned DATE,
+            # FOREIGN KEY (cookbook_id) REFERENCES cookbooks (id)
+        );"""
+        
         #To execute the above code: 
         #calling the constructor for the cursor object to create a new cursor
         #(let's us work with the database)
         cursor = conn.cursor()
         cursor.execute(sql_create_cookbooks_table)
-        print("Sucessfully created a database structure")
+        cursor.execute(sql_create_lending_cookbooks_table)
+        print("Successfully created tables.")
     except Error as e:
-        print(f"Error creating a table: {e}")
+        print(f"Error creating tables: {e}")
+    
+# part 2a
+    # '''Function to create a new cookbook record'''
 
-#Insert a new cookbook record into the database table:
+# Insert a new cookbook record into the database table:
 def insert_cookbook(conn, cookbook):
     """Add a new cookbook to your shelf """
     sql = '''INSERT INTO cookbooks(title, author, year_published, 
@@ -75,7 +92,7 @@ def get_all_cookbooks(conn):
             print(f"ID: {book[0]}")
             print(f"Title: {book[1]}")
             print(f"Author: {book[2]}")
-            print(f"Published: {book[3]} (vintage is better)")
+            print(f"Published: {book[3]} (notes can be put here)")
             #multiply the emoji by the aesthetic rating: 
             print(f"Aesthetic Rating: {'*' * book[4]}")
             #insert some logic 
@@ -99,29 +116,41 @@ def add_recipe_tags(conn, cookbook_id, tags):
     # Return success/failure status
 
 #part 2, option b, cookbook borrowing tracker:
+#made a table above first, then: 
 def track_borrowed_cookbook(conn, cookbook_id, friend_name, date_borrowed):
     """Track which friend borrowed your cookbook and when"""
+
+    # Part 2: Add new columns for tracking borrowed cookbooks
+
+    # To execute the above code:
+    # calling the constructor for the cursor object to create a new cursor
+    # (let's us work with the database)
+    cursor = conn.cursor()
+    cursor.execute(sql_create_cookbooks_table)
+    print("Successfully created a database structure")
+        
+
     # Create a borrowing history table
     # Add borrowing record
     # Include return date tracking
 
 #part 2, option c, Aesthetic Photoshoot Planning
-def create_photoshoot_plan(conn, cookbook_id):
-    """Generate Instagram-worthy photo layout suggestions based on cover_color and aesthetic_rating"""
+# def create_photoshoot_plan(conn, cookbook_id):
+#     """Generate Instagram-worthy photo layout suggestions based on cover_color and aesthetic_rating"""
     # Suggest photo angles
     # Recommend props based on cookbook theme
     # Generate hashtag suggestions
 
 #part 2, option d, Seasonal Collection Rotation
-def rotate_seasonal_collection(conn, season):
-    """Update display recommendations based on season"""
+# def rotate_seasonal_collection(conn, season):
+#     """Update display recommendations based on season"""
     # Categorize books by season
     # Suggest seasonal arrangements
     # Update instagram_worthy status based on current season
 
 #part 2, option e, Cookbook Analytics   
-def generate_collection_analytics(conn):
-    """Generate insights about your cookbook collection"""
+# def generate_collection_analytics(conn):
+#     """Generate insights about your cookbook collection"""
     # Calculate average aesthetic rating
     # Track aesthetic trends by year
     # Identify gaps in your collection 
