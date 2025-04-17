@@ -38,8 +38,8 @@ def create_table(conn):
             borrower_name TEXT NOT NULL,
             date_borrowed DATE NOT NULL,
             returned BOOLEAN DEFAULT 0,
-            date_returned DATE,
-            # FOREIGN KEY (cookbook_id) REFERENCES cookbooks (id)
+            date_returned DATE DEFAULT NULL,
+            FOREIGN KEY (cookbook_id) REFERENCES cookbooks (id)
         );"""
         
         #To execute the above code: 
