@@ -16,7 +16,7 @@ def create_connection():
         return None
     
 #Function to create tables for storing cookbooks and borrowing history
-def create_table(conn):
+def create_tables(conn):
     """Create table structure"""
     try: 
         sql_create_cookbooks_table = """
@@ -170,7 +170,7 @@ def main():
         conn.commit()
 
         #Create our Table:
-        create_table(conn)
+        create_tables(conn)
 
         # Insert some carefully curated sample cookbooks
         #main list: [], list into list ()
